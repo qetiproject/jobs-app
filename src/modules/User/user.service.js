@@ -15,6 +15,7 @@ export async function getUsersService(userId) {
 
 export async function getUserByIdService(userId) {
   const user = await User.findById(userId);
+  user.password = undefined;
   if (!user) {
     throw new Error("User not found");
   }

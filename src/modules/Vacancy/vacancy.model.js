@@ -2,31 +2,36 @@ import mongoose from "mongoose";
 import { getUserByIdService } from "../User/user.service.js";
 import User from "../User/user.model.js";
 
-const VacancySchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  recruiter: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    required: true,
-  },
-  category: {
-    type: String,
-    required: true,
-  },
-  applies: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Apply",
+const VacancySchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
     },
-  ],
-});
+    description: {
+      type: String,
+      required: true,
+    },
+    recruiter: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    category: {
+      type: String,
+      required: true,
+    },
+    applies: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Apply",
+      },
+    ],
+  },
+  {
+    versionKey: false,
+  }
+);
 
 VacancySchema.post("save", { document: true }, async function (doc, next) {
   try {
