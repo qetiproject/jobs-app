@@ -5,7 +5,7 @@ import { connectToMongoDB } from "./shared/database.js";
 import { AuthRouter } from "./modules/Auth/auth.router.js";
 import VacancyRouter from "./modules/Vacancy/vacancy.router.js";
 import UserRouter from "./modules/User/user.router.js";
-import ApplyRouter from "./modules/Apply/apply.model.js";
+import ApplyRouter from "./modules/Apply/apply.router.js";
 
 const app = express();
 app.use(bodyParser.json());

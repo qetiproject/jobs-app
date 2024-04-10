@@ -3,7 +3,7 @@ import { createApplyService } from "./apply.service.js";
 class ApplyController {
   async createApply(req, res) {
     try {
-      const applyVacancy = await createApplyService(req.body);
+      const applyVacancy = await createApplyService(req.body, req.user.userId);
       res.status(201).json(applyVacancy);
     } catch (error) {
       res.status(404).json({ message: error.message });

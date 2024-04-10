@@ -11,4 +11,4 @@ ApplyRouter.post(
   ApplyController.createApply
 );
 
-export default UserRouter;
+export default ApplyRouter;

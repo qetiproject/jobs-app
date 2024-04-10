@@ -3,6 +3,9 @@ import User from "./user.model.js";
 export async function getCurrentUserService(userId) {
   const user = await User.findById(userId);
   user.password = undefined;
+  if (user.role === "user") {
+    user.vacancies = undefined;
+  }
   return user;
 }
 
