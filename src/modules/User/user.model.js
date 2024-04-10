@@ -16,7 +16,12 @@ const UserSchema = new mongoose.Schema({
     enum: ["user", "recruiter"],
     default: "user",
   },
-  // vacancies: [],
+  vacancies: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Vacancy",
+    },
+  ],
 });
 
 export default mongoose.model("User", UserSchema);
