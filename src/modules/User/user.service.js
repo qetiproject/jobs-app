@@ -15,6 +15,11 @@ export async function getUserByIdService(userId) {
 
 export async function deleteUserService(userId) {
   const user = await getUserByIdService(userId);
+  if (user.role != "recruiter") {
+    throw new Error(
+      "You have permission to delete only user with recruiter role"
+    );
+  }
   await user.deleteOne();
   return user;
 }
