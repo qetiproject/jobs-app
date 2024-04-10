@@ -4,25 +4,12 @@ import { checkAuth, checkRole } from "../../middlewares/auth.middleware.js";
 
 const UserRouter = express.Router();
 
-UserRouter.get(
-  "/",
-  checkAuth,
-  checkRole(["recruiter"]),
-  UserController.getUsers
-);
+UserRouter.use(checkAuth, checkRole(["recruiter"]));
 
-UserRouter.get(
-  "/:userId",
-  checkAuth,
-  checkRole(["recruiter"]),
-  UserController.getUserById
-);
+UserRouter.get("/", UserController.getUsers);
 
-UserRouter.delete(
-  "/:userId",
-  checkAuth,
-  checkRole(["recruiter"]),
-  UserController.deleteUser
-);
+UserRouter.get("/:userId", UserController.getUserById);
+
+UserRouter.delete("/:userId", UserController.deleteUser);
 
 export default UserRouter;
