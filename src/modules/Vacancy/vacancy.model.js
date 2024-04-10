@@ -20,12 +20,12 @@ const VacancySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  //   applies: [
-  //     {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "Apply",
-  //     },
-  //   ],
+  applies: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Apply",
+    },
+  ],
 });
 
 VacancySchema.post("save", { document: true }, async function (doc, next) {
