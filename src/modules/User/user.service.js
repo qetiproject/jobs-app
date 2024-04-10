@@ -6,8 +6,10 @@ export async function getCurrentUserService(userId) {
   return user;
 }
 
-export async function getUsersService() {
-  const users = await User.find();
+export async function getUsersService(userId) {
+  let users = await User.find();
+  const user = await User.findById(userId);
+  users = users.filter((item) => item.id != user.id);
   return users;
 }
 
