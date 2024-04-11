@@ -16,7 +16,7 @@ class VacancyController {
   }
   async getVcancies(req, res) {
     try {
-      const vacancies = await getVacanciesService(req.user.userId);
+      const vacancies = await getVacanciesService(req.user);
       res.status(200).json(vacancies);
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -26,7 +26,7 @@ class VacancyController {
     try {
       const vacancy = await getVacancyByIdService(
         req.params.vacancyId,
-        req.user.userId
+        req.user
       );
       res.status(200).json(vacancy);
     } catch (error) {
