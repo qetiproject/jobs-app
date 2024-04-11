@@ -6,13 +6,23 @@ export async function createVacancyService(body, userId) {
   return vacancy;
 }
 
-export async function getVacanciesService() {
-  const vacancies = await Vacancy.find();
+export async function getVacanciesService(userId) {
+  const vacancies = await Vacancy.findOne({
+    recruiter: { $eq: userId },
+  });
+
+  if (!vacancies) {
+    throw new Error("Vacancy not found");
+  }
+
   return vacancies;
 }
 
-export async function getVacancyByIdService(vacancyId) {
-  const vacancy = await Vacancy.findById(vacancyId);
+export async function getVacancyByIdService(vacancyId, userId) {
+  const vacancy = await Vacancy.findOne({
+    _id: { $eq: vacancyId },
+    recruiter: { $eq: userId },
+  });
   if (!vacancy) {
     throw new Error("Vacancy not found");
   }

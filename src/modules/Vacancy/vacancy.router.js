@@ -11,9 +11,9 @@ VacancyRouter.post(
   VacancyController.createvacancy
 );
 
-VacancyRouter.get("/", VacancyController.getVcancies);
+VacancyRouter.get("/", checkAuth, VacancyController.getVcancies);
 
-VacancyRouter.get("/:vacancyId", VacancyController.getVacancyById);
+VacancyRouter.get("/:vacancyId", checkAuth, VacancyController.getVacancyById);
 
 VacancyRouter.delete(
   "/:vacancyId",

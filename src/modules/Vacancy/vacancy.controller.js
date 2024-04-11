@@ -14,9 +14,9 @@ class VacancyController {
       res.status(404).json({ message: error.message });
     }
   }
-  async getVcancies(_, res) {
+  async getVcancies(req, res) {
     try {
-      const vacancies = await getVacanciesService();
+      const vacancies = await getVacanciesService(req.user.userId);
       res.status(200).json(vacancies);
     } catch (error) {
       res.status(500).json({ message: error.message });
@@ -24,7 +24,10 @@ class VacancyController {
   }
   async getVacancyById(req, res) {
     try {
-      const vacancy = await getVacancyByIdService(req.params.vacancyId);
+      const vacancy = await getVacancyByIdService(
+        req.params.vacancyId,
+        req.user.userId
+      );
       res.status(200).json(vacancy);
     } catch (error) {
       res.status(500).json({ message: error.message });
