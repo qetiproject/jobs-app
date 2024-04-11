@@ -30,6 +30,7 @@ class VacancyController {
       res.status(500).json({ message: error.message });
     }
   }
+
   async deleteVacancy(req, res) {
     try {
       const vacancy = await deleteVacancyService(
