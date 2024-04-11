@@ -8,7 +8,7 @@ import {
 class VacancyController {
   async createvacancy(req, res) {
     try {
-      const newVacancy = await createVacancyService(req.body);
+      const newVacancy = await createVacancyService(req.body, req.user.userId);
       res.status(201).json(newVacancy);
     } catch (error) {
       res.status(404).json({ message: error.message });
@@ -32,7 +32,10 @@ class VacancyController {
   }
   async deleteVacancy(req, res) {
     try {
-      const vacancy = await deleteVacancyService(req.params.vacancyId);
+      const vacancy = await deleteVacancyService(
+        req.params.vacancyId,
+        req.user.userId
+      );
       res.status(200).json(vacancy);
     } catch (error) {
       res.status(500).json({ message: error.message });
